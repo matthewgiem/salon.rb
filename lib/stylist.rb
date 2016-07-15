@@ -23,9 +23,9 @@ class Stylist
   end
 
   define_singleton_method(:find) do |identification|
-    Stylists.all().each() do |stylist|
-      if stylists.id == identification
-        return stylists
+    Stylist.all().each() do |stylist|
+      if stylist.id() == identification
+        return stylist
       end
     end
   end
@@ -36,5 +36,11 @@ class Stylist
 
   define_method(:==) do |another_stylist|
     self.id == another_stylist.id
+  end
+
+  define_method(:update) do |attributes|
+    @id = self.id()
+    @name = attributes.fetch(:name)
+    DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{@id};")
   end
 end

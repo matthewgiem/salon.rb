@@ -1,2 +1,14 @@
 <h1>list of stylists</h1>
+<% if @stylists.any?() %>
+  <ul>
+  <% @stylists.each() do |stylist| %>
+    <li><a href="/owner/stylists/stylist/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+  <% end %>
+  </ul>
+<% else %>
+  <h3>go out and get more workers</h3>
+<% end %>
+
+
+<a href="/owner/stylists/new">Add a stylist</a>
 <a href="/owner">back</a>

@@ -1,2 +1,14 @@
 <h1>list of clients</h1>
+<% if @clients.any?() %>
+  <ul>
+  <% @clients.each() do |client| %>
+    <li><a href="/owner/clients/client/<%= client.id() %>"><%= client.name() %></a></li>
+  <% end %>
+  </ul>
+<% else %>
+  <h3>go out and get more workers</h3>
+<% end %>
+
+
+<a href="/owner/clients/new">Add a client</a>
 <a href="/owner">back</a>

@@ -40,4 +40,11 @@ class Client
   define_singleton_method(:delete) do |id|
     DB.exec("DELETE FROM clients WHERE id = #{id}")
   end
+
+  define_method(:update) do |attributes|
+    @id = self.id()
+    @name = attributes.fetch(:name)
+    @stylist_id = attributes.fetch(:stylist_id).to_i()
+    DB.exec("UPDATE clients SET name = '#{@name}', stylist_id = #{@stylist_id} WHERE id = #{@id};")
+  end
 end

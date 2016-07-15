@@ -16,10 +16,12 @@ get('/owner') do
 end
 
 get('/owner/clients') do
+  @clients = Client.all()
   erb(:clients)
 end
 
 get('/owner/clients/new') do
+    @stylists = Stylist.all()
   erb(:client_form)
 end
 
@@ -38,6 +40,22 @@ post('/owner/stylists/new') do
   stylist.save()
   @stylists = Stylist.all()
   erb(:stylists)
+end
+
+post('/owner/clients/new') do
+  client_name = params.fetch("client_name")
+  stylist_id = params.fetch("stylist_id").to_i()
+  client = Client.new({:name => client_name, :stylist_id => stylist_id})
+  client.save()
+  @clients = Client.all()
+  erb(:clients)
+end
+
+get('/owner/clients/client/:id') do
+  @id = params.fetch('id').to_i()
+  @client = Client.find(@id)
+  @stylists = Stylist.all()
+  erb(:client_edit)
 end
 
 get('/owner/stylists/stylist/:id') do
@@ -60,4 +78,14 @@ delete('/owner/stylists/stylist/:id') do
   Stylist.delete(@id)
   @stylists = Stylist.all()
   erb(:stylists)
+end
+
+patch('/owner/clients/client/:id') do
+  id = params.fetch('id').to_i()
+  name = params.fetch('client_name')
+  stylist_id = params.fetch('stylist_id').to_i()
+  updated_client = Client.find(id)
+  updated_client.update({:name => name, :stylist_id => stylist_id})
+  @clients = Client.all()
+  erb(:clients)
 end

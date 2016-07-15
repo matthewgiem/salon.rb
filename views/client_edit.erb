@@ -1,0 +1,33 @@
+<h1><%= @client.name() %></h1>
+
+<form class="form-control" action="/owner/clients/client/<%= @client.id() %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="client_name">change name to:</label>
+  <input type="text" value="<%= @client.name() %>" name="client_name" autofocus>
+
+  <label for="stylist">stylists</label>
+  <select class="form-control" required name="stylist_id">
+    <% if @stylists.any?() %>
+      <%@stylists.each() do |stylist|%>
+        <% if(stylist.id() == @client.stylist_id()) %>
+          <option value="<%= stylist.id() %>" selected><%= stylist.name() %></option>
+        <% else%>
+          <option value="<%= stylist.id() %>"><%= stylist.name() %></option>
+        <%end%>
+      <% end %>
+    <% end %>
+  </select>
+
+  <button type="submit">Change</button>
+</form>
+<br>
+<br>
+<br>
+<form action="/owner/clients/client/<%= @client.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">DELETE</button>
+
+</form>
+
+<a href="/owner/clients">back</a>

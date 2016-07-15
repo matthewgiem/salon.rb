@@ -1,6 +1,27 @@
 require('spec_helper')
 
-describe("stylist") do
+describe(Stylist) do
+  describe("#find") do
+    it("finds a peticular stylist from the database") do
+      test_stylist = Stylist.new({:name => "Name"})
+      test_stylist.save()
+      test_stylist1 = Stylist.new({:name => "Other Name"})
+      test_stylist1.save()
+
+      expect(Stylist.find(test_stylist.id())).to(eq(test_stylist))
+    end
+  end
+
+  describe("#update") do
+    it('finds a peticular stylist and changes its values') do
+      test_stylist = Stylist.new({:name => "Name"})
+      test_stylist.save()
+      test_stylist.update({:name => "Other Name"})
+
+      expect(test_stylist.name()).to(eq("Other Name"))
+    end
+  end
+
   describe(".all") do
     it("starts out with an empty database so all returns nill") do
       expect(Stylist.all()).to(eq([]))

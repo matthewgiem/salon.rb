@@ -13,6 +13,16 @@ describe(Client) do
     end
   end
 
+  describe("#update") do
+    it('finds a peticular client and changes its values') do
+      test_client = Client.new({:name => 'Name', :stylist_id => 2})
+      test_client.save()
+      test_client.update({:name => "Other Name", :stylist_id => 2})
+
+      expect(test_client.name()).to(eq('Other Name'))
+    end
+  end
+
   describe("#==") do
     it("compares two clients") do
       client1 = Client.new({:name => 'Matt', :stylist_id => 1 })

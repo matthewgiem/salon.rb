@@ -2,6 +2,17 @@ require('spec_helper')
 
 
 describe(Client) do
+  describe("#find") do
+    it("finds a peticular client from the database") do
+      test_client = Client.new({:name => "Name", :stylist_id => 1})
+      test_client.save()
+      test_client1 = Client.new({:name => "Other Name", :stylist_id => 2})
+      test_client1.save()
+
+      expect(Client.find(test_client.id())).to(eq(test_client))
+    end
+  end
+
   describe("#==") do
     it("compares two clients") do
       client1 = Client.new({:name => 'Matt', :stylist_id => 1 })

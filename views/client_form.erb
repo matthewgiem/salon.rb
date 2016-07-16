@@ -1,18 +1,22 @@
 <h1>form to add a clients</h1>
-<form class="form-control" action="/owner/clients/new" method="post">
-  <label for="client_name">client name</label>
-  <input required type="text" name="client_name">
-  <button type="submit">Add client</button>
+<% if @stylists.any?() %>
+  <form action="/owner/clients/new" method="post">
+    <label for="client_name">client name</label>
+    <input required type="text" name="client_name">
+    <button type="submit">Add client</button>
 
-  <label for="stylist">stylists</label>
-  <select class="form-control" required name="stylist_id">
-    <option></option>
-    <% if @stylists.any?() %>
-      <%@stylists.each() do |stylist|%>
-      <option value="<%= stylist.id() %>"><%= stylist.name() %></option>
+    <label for="stylist">stylists</label>
+    <select required name="stylist_id">
+      <option></option>
+      <% if @stylists.any?() %>
+        <%@stylists.each() do |stylist|%>
+        <option value="<%= stylist.id() %>"><%= stylist.name() %></option>
+        <% end %>
       <% end %>
-    <% end %>
-  </select>
+    </select>
+  </form>
+<%else%>
+<h3>You cant take on any clients on until you have some stylits!</h3>
 
-</form>
+<% end %>
 <a href="/owner/clients">back</a>

@@ -1,6 +1,6 @@
 <h1><%= @stylist.name() %></h1>
 
-<form class="form-control" action="/owner/stylists/stylist/<%= @stylist.id() %>" method="post">
+<form action="/owner/stylists/stylist/<%= @stylist.id() %>" method="post">
   <input type="hidden" name="_method" value="patch">
 
   <label for="stylist_name">change name to:</label>
@@ -8,7 +8,7 @@
   <button type="submit">Change</button>
 </form>
 
-<form class="form-control" action="/owner/stylists/stylist/<%= @stylist.id() %>" method="post">
+<form action="/owner/stylists/stylist/<%= @stylist.id() %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <button type="submit">DELETE</button>
 

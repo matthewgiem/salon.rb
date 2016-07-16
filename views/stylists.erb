@@ -2,7 +2,7 @@
 <% if @stylists.any?() %>
   <ul>
   <% @stylists.each() do |stylist| %>
-    <li><a href="/owner/stylists/stylist/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    <li><a href="/owner/stylists/stylist/<%= stylist.id() %>" class="item"><%= stylist.name() %></a></li>
   <% end %>
   </ul>
 <% else %>

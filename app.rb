@@ -89,3 +89,10 @@ patch('/owner/clients/client/:id') do
   @clients = Client.all()
   erb(:clients)
 end
+
+delete('/owner/clients/client/:id') do
+  id = params.fetch('id').to_i()
+  Client.delete(id)
+  @clients = Client.all()
+  erb(:clients)
+end
